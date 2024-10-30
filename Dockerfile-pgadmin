@@ -1,0 +1,11 @@
+FROM elestio/pgadmin
+USER root
+ENV TZ=Europe/Moscow
+RUN apk update && apk add --no-cache shadow
+
+RUN apk add mc
+RUN apk add iputils-ping
+RUN apk add curl
+
+RUN echo "root:1111" | chpasswd
+RUN echo "pgadmin:1111" | chpasswd

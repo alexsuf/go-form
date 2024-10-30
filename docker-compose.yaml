@@ -1,0 +1,53 @@
+services:
+  go:
+    image: alexsuf/go
+    container_name: go
+    stdin_open: true
+    tty: true
+    environment:
+      TZ: Europe/Moscow
+    ports:
+      - 8080:8080
+    command: "go run edit.go"
+    volumes:
+      - ./app:/app
+
+  postgres:
+    image: alexsuf/postgres
+    container_name: postgres
+    restart: always
+    ports:
+      - 1111:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: postgres
+      TZ: Europe/Moscow
+    volumes:
+      - postgres_db:/var/lib/postgresql/data
+      - ./on_startup.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./files:/files
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+
+  pgadmin:
+    image: alexsuf/pgadmin
+    container_name: pgadmin
+    ports:
+      - 5050:80   # localhost:5050
+    environment:
+      PGADMIN_DEFAULT_EMAIL: aleksey.zadonsky@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: secret
+      TZ: Europe/Moscow
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+
+
+volumes:
+  postgres_db:
+    external: true
+  pgadmin:
+    external: true
