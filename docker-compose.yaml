@@ -11,6 +11,7 @@ services:
     command: "go run edit.go"
     volumes:
       - ./app:/app
+      - ./files:/files
 
   postgres:
     image: alexsuf/postgres
