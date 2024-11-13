@@ -71,10 +71,10 @@ var pageTemplate = `
 
 	<div class="center">
 		<form method="POST" action="/add">
-			<input type="text" name="fio" placeholder="ФИО" required style="font-size: 16px;">
-			<input type="number" name="salary" placeholder="Зарплата" required style="font-size: 16px;">
-			<input type="number" name="age" placeholder="Возраст" required style="font-size: 16px;">
-			<input type="submit" class="button" value="Добавить запись" style="background-color: blue; color: white; font-size: 16px;">
+			<input type="text" name="Fio" placeholder="ФИО" required style="font-size: 16px;">
+			<input type="number" name="Salary" placeholder="Зарплата" required style="font-size: 16px;">
+			<input type="number" name="Age" placeholder="Возраст" required style="font-size: 16px;">
+			<input type="submit" class="Button" value="Добавить запись" style="background-color: blue; color: white; font-size: 16px;">
 		</form>
 	</div>
 
